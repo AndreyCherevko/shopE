@@ -18,5 +18,7 @@ public interface ProductManager {
 
     public List<Product> getProducts(int page, int length, ProductType type) throws NoSuchFoundProductException;
 
+    public Product getProduct(int productId) throws NoSuchFoundProductException;
+
 
 }

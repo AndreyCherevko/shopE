@@ -35,6 +35,11 @@ public class ProductManagerImpl implements ProductManager {
         return dao.findForType(type);
     }
 
+    @Override
+    public Product getProduct(int productId) throws NoSuchFoundProductException {
+        return dao.find(productId);
+    }
+
     public void setDao(ProductDao dao) {
         this.dao = dao;
     }
