@@ -1,7 +1,6 @@
 package ua.artcode.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import ua.artcode.exception.NoUserFoundException;
 import ua.artcode.model.Client;
@@ -13,6 +12,7 @@ import java.util.List;
 @Repository
 public class ClientDaoJpaHibernate implements ClientDao {
 
+    private String FIND_CLIENT ="from Client c where c.login = :login";
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
@@ -39,7 +39,7 @@ public class ClientDaoJpaHibernate implements ClientDao {
     @Override
     public Client find(String login) throws NoUserFoundException {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<Client> clients = entityManager.createQuery("from Client c where c.login = :login")
+        List<Client> clients = entityManager.createQuery(FIND_CLIENT)
                 .setParameter("login", login)
                 .setMaxResults(1)
                 .getResultList();

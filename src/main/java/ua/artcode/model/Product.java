@@ -20,7 +20,6 @@ public class Product {
     @Column
     private long price;
     @Enumerated(value=EnumType.STRING)
-    @Column(length = 20)
     private ProductType productType;
 
     public Product() {

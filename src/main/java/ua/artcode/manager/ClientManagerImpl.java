@@ -24,15 +24,20 @@ public class ClientManagerImpl implements ClientManager {
     }
 
     @Override
-    public String signIn(String login, String pass) throws NoUserFoundException {
+    public Client signIn(String login, String pass) throws NoUserFoundException {
 
         Client client = dao.find(login);
 
-        return client.toString();
+        return client;
     }
 
     @Override
     public void logout(String accessKey) {
 
+    }
+
+    @Override
+    public Client getClient(String login) throws NoUserFoundException {
+        return dao.find(login);
     }
 }

@@ -1,5 +1,6 @@
 package ua.artcode.dao;
 
+import ua.artcode.exception.NoSuchFoundProductException;
 import ua.artcode.exception.NoUserFoundException;
 import ua.artcode.model.Product;
 import ua.artcode.model.ProductType;
@@ -11,13 +12,13 @@ import java.util.List;
  */
 public interface ProductDao {
 
-    void addProduct(Product product);
+    void create(Product product);
 
-    void deleteProduct(int productId);
+    void delete(int productId);
 
-    void updateProduct(Product product);
+    void update(Product product);
 
-    Product findProduct(int productId) throws NoUserFoundException;
+    Product find(int productId) throws  NoSuchFoundProductException;
 
-    List<Product> findProductForType(ProductType type);
+    List<Product> findForType(ProductType type) throws NoSuchFoundProductException;
 }

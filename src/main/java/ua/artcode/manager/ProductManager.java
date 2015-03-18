@@ -1,5 +1,6 @@
 package ua.artcode.manager;
 
+import ua.artcode.exception.NoSuchFoundProductException;
 import ua.artcode.model.Product;
 import ua.artcode.model.ProductType;
 
@@ -15,7 +16,7 @@ public interface ProductManager {
 
     public void removeProduct(int id);
 
-    public List<Product> getProducts(int page, int length, ProductType type);
+    public List<Product> getProducts(int page, int length, ProductType type) throws NoSuchFoundProductException;
 
 
 }
