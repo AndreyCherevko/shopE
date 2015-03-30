@@ -2,6 +2,7 @@ package ua.artcode.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.artcode.exception.InvalidPasswordException;
 import ua.artcode.exception.NoSuchFoundOrderException;
 import ua.artcode.exception.NoSuchFoundProductException;
 import ua.artcode.exception.NoUserFoundException;
@@ -65,6 +66,8 @@ public class MenuConsole {
                     accessKey = clientManager.signIn(login,pass);
                 } catch (NoUserFoundException e) {
                     System.err.println("No user found with login " + login);
+                } catch (InvalidPasswordException e) {
+                    e.printStackTrace();
                 }
                 System.out.println(accessKey);
                 break;
@@ -101,6 +104,8 @@ public class MenuConsole {
                 } catch (NoSuchFoundProductException e) {
                     e.printStackTrace();
                 } catch (NoUserFoundException e) {
+                    e.printStackTrace();
+                } catch (InvalidPasswordException e) {
                     e.printStackTrace();
                 }
                 break;

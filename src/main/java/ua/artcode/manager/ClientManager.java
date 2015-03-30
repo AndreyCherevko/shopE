@@ -1,5 +1,6 @@
 package ua.artcode.manager;
 
+import ua.artcode.exception.InvalidPasswordException;
 import ua.artcode.exception.NoUserFoundException;
 import ua.artcode.model.Client;
 
@@ -12,7 +13,7 @@ public interface ClientManager {
                          String phone, String email);
 
 
-    public Client signIn(String login, String pass) throws NoUserFoundException;
+    public Client signIn(String login, String pass) throws NoUserFoundException, InvalidPasswordException;
 
     public void logout(String login);
 

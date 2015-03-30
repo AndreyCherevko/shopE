@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ua.artcode.dao.ClientDao;
 import ua.artcode.dao.ClientDaoImpl;
 import ua.artcode.dao.ClientDaoJpaHibernate;
+import ua.artcode.exception.InvalidPasswordException;
 import ua.artcode.exception.NoUserFoundException;
 import ua.artcode.model.Client;
 import ua.artcode.utils.EntityManagerFactoryHolder;
@@ -24,9 +25,11 @@ public class ClientManagerImpl implements ClientManager {
     }
 
     @Override
-    public Client signIn(String login, String pass) throws NoUserFoundException {
+    public Client signIn(String login, String pass) throws NoUserFoundException, InvalidPasswordException {
 
         Client client = dao.find(login);
+        if(!client.getPass().equals(pass))
+            throw new InvalidPasswordException();
 
         return client;
     }
